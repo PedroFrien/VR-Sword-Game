@@ -4,9 +4,9 @@ using UnityEngine;
 
 public abstract class BaseProjectile : MonoBehaviour
 {
-    public abstract void Parried();
+    public abstract void Parry(float VelocityMult);
 
-    public abstract bool Parryable { get; set; }
+    public abstract bool IsParryable { get; set; }
 
     public abstract bool IsParried { get; set; }
 }

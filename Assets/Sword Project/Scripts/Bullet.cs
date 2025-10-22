@@ -4,24 +4,25 @@ using UnityEngine;
 
 public class Bullet : BaseProjectile
 {
-    private bool _parryable;
-    private bool _isParried;
+    public bool _isParryable;
+    public bool _isParried;
 
     public Rigidbody rb;
 
 
 
-    public override void Parried()
+    public override void Parry(float VelocityMult)
     {
-        rb.velocity = rb.velocity * -1;
+        Debug.Log("Bullet Got Parried");
+        rb.velocity = rb.velocity * VelocityMult * -1;
     }
 
-    public override bool Parryable 
+    public override bool IsParryable 
     {
-        get { return _parryable; }
+        get { return _isParryable; }
         set
         {
-            _parryable = value;
+            _isParryable = value;
 
         }
     }

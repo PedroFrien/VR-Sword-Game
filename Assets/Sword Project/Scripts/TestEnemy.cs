@@ -78,7 +78,7 @@ public class TestEnemy : BaseCharacter
 
         Vector3 shotDirection = (player.position - transform.position).normalized;
 
-        firedBullet.GetComponent<Rigidbody>().velocity = shotDirection * bulletSpeed * Time.deltaTime;
+        firedBullet.GetComponent<Rigidbody>().velocity = shotDirection * bulletSpeed;
         firedBullet.Damage = bulletDamage;
 
 

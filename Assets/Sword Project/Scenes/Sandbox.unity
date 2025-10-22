@@ -10737,7 +10737,7 @@ PrefabInstance:
     - target: {fileID: 4375189281290987325, guid: e8b688908cc0ce24c930e6bad93e249c,
         type: 3}
       propertyPath: bulletSpeed
-      value: 2000
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7106180377681637929, guid: e8b688908cc0ce24c930e6bad93e249c,
         type: 3}
@@ -12789,31 +12789,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 793946490}
-    - target: {fileID: 6529819418258989431, guid: ee74454f2c2f0754985890e65470b0eb,
-        type: 3}
-      propertyPath: m_Height
-      value: 2.1171885
-      objectReference: {fileID: 0}
-    - target: {fileID: 6529819418258989431, guid: ee74454f2c2f0754985890e65470b0eb,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 6529819418258989431, guid: ee74454f2c2f0754985890e65470b0eb,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.058594227
-      objectReference: {fileID: 0}
-    - target: {fileID: 7823938904084381966, guid: ee74454f2c2f0754985890e65470b0eb,
-        type: 3}
-      propertyPath: bulletSpeed
-      value: 1500
-      objectReference: {fileID: 0}
-    - target: {fileID: 7823938904084381966, guid: ee74454f2c2f0754985890e65470b0eb,
-        type: 3}
-      propertyPath: fireInterval
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13624,7 +13599,7 @@ PrefabInstance:
     - target: {fileID: 4375189281290987325, guid: e8b688908cc0ce24c930e6bad93e249c,
         type: 3}
       propertyPath: bulletSpeed
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7106180377681637929, guid: e8b688908cc0ce24c930e6bad93e249c,
         type: 3}
@@ -14738,7 +14713,7 @@ PrefabInstance:
     - target: {fileID: 4375189281290987325, guid: e8b688908cc0ce24c930e6bad93e249c,
         type: 3}
       propertyPath: bulletSpeed
-      value: 3000
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7106180377681637929, guid: e8b688908cc0ce24c930e6bad93e249c,
         type: 3}

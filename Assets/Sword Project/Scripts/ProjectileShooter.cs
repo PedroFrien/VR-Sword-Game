@@ -40,6 +40,6 @@ public class ProjectileShooter : MonoBehaviour
     private void ShootProjectile()
     {
         BaseProjectile shotProjectile = Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation);
-        shotProjectile.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed * Time.deltaTime;
+        shotProjectile.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
     }
 }

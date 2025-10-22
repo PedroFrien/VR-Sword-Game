@@ -488,7 +488,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 906
+  m_VersionIndex: 909
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -749,6 +749,6 @@ MonoBehaviour:
   _health: 1
   fireInterval: 0.5
   bulletDamage: 1
-  bulletSpeed: 1500
+  bulletSpeed: 10
   firePoint: {fileID: 2334235948059828282}
   bullet: {fileID: 6259616428014314615, guid: 1c99a49791281874c8dd5f72270022fd, type: 3}

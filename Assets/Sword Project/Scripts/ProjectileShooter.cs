@@ -26,16 +26,20 @@ public class ProjectileShooter : MonoBehaviour
 
     private IEnumerator ProjectileTimer()
     {
-        ShootProjectile();
 
-        yield return new WaitForSeconds(shootInterval);
+        while (true)
+        {
+            ShootProjectile();
 
-        StartCoroutine(ProjectileTimer());
+            yield return new WaitForSeconds(shootInterval);
+        }
+        
+
     }
 
     private void ShootProjectile()
     {
         BaseProjectile shotProjectile = Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation);
-        shotProjectile.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed * Time.deltaTime);
+        shotProjectile.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed * Time.deltaTime;
     }
 }

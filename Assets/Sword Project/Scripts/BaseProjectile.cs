@@ -9,4 +9,6 @@ public abstract class BaseProjectile : MonoBehaviour
     public abstract bool IsParryable { get; set; }
 
     public abstract bool IsParried { get; set; }
+
+    public abstract float Damage { get; set; }
 }

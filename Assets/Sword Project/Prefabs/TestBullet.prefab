@@ -123,7 +123,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isParryable: 1
   _isParried: 0
+  _damage: 1
   rb: {fileID: 5974155547200302767}
+  bulletRadius: 0
+  swordLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &5974155547200302767
 Rigidbody:
   m_ObjectHideFlags: 0

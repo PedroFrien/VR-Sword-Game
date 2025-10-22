@@ -10,7 +10,6 @@ public class SwordBlade : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Entered");
         BaseProjectile projectile = other.gameObject.GetComponent<BaseProjectile>();
         if (projectile != null && projectile.IsParryable == true && projectile.IsParried == false)
         {

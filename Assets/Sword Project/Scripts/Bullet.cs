@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class Bullet : BaseProjectile
 {
     public bool _isParryable;
     public bool _isParried;
+    public float _damage;
 
     public Rigidbody rb;
 
@@ -26,15 +28,26 @@ public class Bullet : BaseProjectile
         Vector3 direction = transform.position - previousPosition;
         float distance = direction.magnitude;
 
-        if (Physics.SphereCast(previousPosition, bulletRadius, direction.normalized, out RaycastHit hit, distance, swordLayer))
+        //if (Physics.SphereCast(previousPosition, bulletRadius, direction.normalized, out RaycastHit hit, distance, swordLayer))
+        //{
+        //    Parry(2);
+        //}
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        BaseCharacter hitCharacter = collision.gameObject.GetComponent<BaseCharacter>();
+        if (hitCharacter != null)
         {
-            Parry(2);
+            hitCharacter.TakeDamage(_damage);
         }
+
+
+        Destroy(gameObject);
     }
 
     public override void Parry(float VelocityMult)
     {
-        Debug.Log("Bullet Got Parried");
         rb.velocity = rb.velocity * VelocityMult * -1;
         _isParried = true;
     }
@@ -58,7 +71,15 @@ public class Bullet : BaseProjectile
 
         }
     }
- 
 
-    
+    public override float Damage
+    {
+        get => _damage;
+        set => _damage = value;
+    }
+
+
+
+
+
 }

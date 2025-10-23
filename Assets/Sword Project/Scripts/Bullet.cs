@@ -17,6 +17,9 @@ public class Bullet : BaseProjectile
     [SerializeField] private float bulletRadius;
     [SerializeField] private LayerMask swordLayer;
 
+    [SerializeField] private Material parryableMat;
+    [SerializeField] private Material nonParryableMat;
+
 
     void Start()
     {
@@ -36,6 +39,8 @@ public class Bullet : BaseProjectile
 
     private void OnCollisionEnter(Collision collision)
     {
+        
+
         BaseCharacter hitCharacter = collision.gameObject.GetComponent<BaseCharacter>();
         if (hitCharacter != null)
         {
@@ -46,10 +51,37 @@ public class Bullet : BaseProjectile
         Destroy(gameObject);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (IsParryable && other.GetComponent<BaseProjectile>() != null)
+        {
+            Destroy(other.gameObject);
+        }
+    }
+
     public override void Parry(float VelocityMult)
     {
         rb.velocity = rb.velocity * VelocityMult * -1;
         _isParried = true;
+    }
+
+    public override void RandomParry(float parryChance)
+    {
+        int randomNum = Random.Range(0, 100);
+
+        if (randomNum <= parryChance)
+        {
+            IsParryable = true;
+            GetComponent<MeshRenderer>().material = parryableMat;
+        }
+        else
+        {
+            IsParryable = false;
+            GetComponent<MeshRenderer>().material = nonParryableMat;
+        }
+
+
+
     }
 
     public override bool IsParryable 

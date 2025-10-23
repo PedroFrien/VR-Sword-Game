@@ -11,6 +11,8 @@ public class ProjectileShooter : MonoBehaviour
 
     [SerializeField] private BaseProjectile projectile;
 
+    [SerializeField] private float parryableChance;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,5 +43,6 @@ public class ProjectileShooter : MonoBehaviour
     {
         BaseProjectile shotProjectile = Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation);
         shotProjectile.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+        shotProjectile.RandomParry(parryableChance);
     }
 }

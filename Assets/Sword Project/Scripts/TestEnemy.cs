@@ -27,6 +27,8 @@ public class TestEnemy : BaseCharacter
     private bool isSearchingForPoint;
     public bool rooted;
 
+    [SerializeField] private float parryableChance;
+
 
 
     private void Start()
@@ -186,6 +188,7 @@ public class TestEnemy : BaseCharacter
 
         firedBullet.GetComponent<Rigidbody>().velocity = shotDirection * bulletSpeed;
         firedBullet.Damage = bulletDamage;
+        firedBullet.RandomParry(parryableChance);
 
 
 

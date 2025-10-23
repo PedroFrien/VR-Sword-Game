@@ -6,6 +6,8 @@ public abstract class BaseProjectile : MonoBehaviour
 {
     public abstract void Parry(float VelocityMult);
 
+    public abstract void RandomParry(float parryChance);
+
     public abstract bool IsParryable { get; set; }
 
     public abstract bool IsParried { get; set; }

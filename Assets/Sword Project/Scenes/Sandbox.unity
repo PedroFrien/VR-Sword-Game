@@ -10949,6 +10949,11 @@ PrefabInstance:
       propertyPath: bulletSpeed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4375189281290987325, guid: e8b688908cc0ce24c930e6bad93e249c,
+        type: 3}
+      propertyPath: parryableChance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7106180377681637929, guid: e8b688908cc0ce24c930e6bad93e249c,
         type: 3}
       propertyPath: m_Name
@@ -14295,6 +14300,11 @@ PrefabInstance:
       propertyPath: bulletSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4375189281290987325, guid: e8b688908cc0ce24c930e6bad93e249c,
+        type: 3}
+      propertyPath: parryableChance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7106180377681637929, guid: e8b688908cc0ce24c930e6bad93e249c,
         type: 3}
       propertyPath: m_Name
@@ -15574,6 +15584,11 @@ PrefabInstance:
         type: 3}
       propertyPath: bulletSpeed
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375189281290987325, guid: e8b688908cc0ce24c930e6bad93e249c,
+        type: 3}
+      propertyPath: parryableChance
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7106180377681637929, guid: e8b688908cc0ce24c930e6bad93e249c,
         type: 3}

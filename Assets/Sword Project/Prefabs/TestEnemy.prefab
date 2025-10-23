@@ -760,6 +760,7 @@ MonoBehaviour:
   range: 20
   agent: {fileID: 0}
   rooted: 1
+  parryableChance: 25
 --- !u!195 &3371910582933505941
 NavMeshAgent:
   m_ObjectHideFlags: 0

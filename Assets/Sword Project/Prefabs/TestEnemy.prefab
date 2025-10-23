@@ -752,7 +752,7 @@ MonoBehaviour:
   bulletDamage: 1
   bulletSpeed: 10
   firePoint: {fileID: 2334235948059828282}
-  bullet: {fileID: 6259616428014314615, guid: 1c99a49791281874c8dd5f72270022fd, type: 3}
+  bullet: {fileID: 386671277827444755, guid: 56fcceb88ba6d2a4ead14a6ea50caf8f, type: 3}
   playerLayer:
     serializedVersion: 2
     m_Bits: 1855

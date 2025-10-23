@@ -158,11 +158,14 @@ public class TestEnemy : BaseCharacter
 
     private IEnumerator GunTimer()
     {
-        transform.LookAt(player);
+        
 
         while (true)
         {
-            FireGun();
+            if (agent.velocity.magnitude == 0)
+            {
+                FireGun();
+            }
 
             yield return new WaitForSeconds(fireInterval);
         }
@@ -175,9 +178,11 @@ public class TestEnemy : BaseCharacter
 
     private void FireGun()
     {
+        transform.LookAt(player);
+
         BaseProjectile firedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
 
-        Vector3 shotDirection = (player.position - transform.position).normalized;
+        Vector3 shotDirection = (player.position - firePoint.position).normalized;
 
         firedBullet.GetComponent<Rigidbody>().velocity = shotDirection * bulletSpeed;
         firedBullet.Damage = bulletDamage;

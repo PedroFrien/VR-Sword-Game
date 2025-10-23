@@ -890,7 +890,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -975,5 +975,5 @@ MonoBehaviour:
   shootInterval: 1
   bulletSpeed: 20000
   projectileSpawn: {fileID: 3863883983139053362}
-  projectile: {fileID: 6259616428014314615, guid: 1c99a49791281874c8dd5f72270022fd,
+  projectile: {fileID: 386671277827444755, guid: 56fcceb88ba6d2a4ead14a6ea50caf8f,
     type: 3}

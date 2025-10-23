@@ -488,7 +488,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 909
+  m_VersionIndex: 915
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -637,6 +637,7 @@ GameObject:
   - component: {fileID: 2910421610058067689}
   - component: {fileID: 6529819418258989431}
   - component: {fileID: 7823938904084381966}
+  - component: {fileID: 3371910582933505941}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -747,8 +748,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 1
-  fireInterval: 0.5
+  fireInterval: 1
   bulletDamage: 1
   bulletSpeed: 10
   firePoint: {fileID: 2334235948059828282}
   bullet: {fileID: 6259616428014314615, guid: 1c99a49791281874c8dd5f72270022fd, type: 3}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1855
+  centerPoint: {fileID: 986672082487908879}
+  range: 20
+  agent: {fileID: 0}
+  rooted: 1
+--- !u!195 &3371910582933505941
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4003439436752822712}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

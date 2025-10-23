@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class TestEnemy : BaseCharacter
 {
 
@@ -16,17 +16,55 @@ public class TestEnemy : BaseCharacter
 
     [SerializeField] private BaseProjectile bullet;
 
+    [SerializeField] private LayerMask playerLayer;
+
     private Transform player;
+
+    public Transform centerPoint;
+    public float range;
+    public NavMeshAgent agent;
+
+    private bool isSearchingForPoint;
+    public bool rooted;
 
 
 
     private void Start()
     {
+        rooted = true;
+
         player = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
-        Debug.Log(player);
+        agent = GetComponent<NavMeshAgent>();
 
-        StartCoroutine(GunTimer());
+        if (isSearchingForPoint == false)
+        {
+            StartCoroutine(FindShootPoint());
+        }
+        
+    }
+
+    private void Update()
+    {
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            
+
+            
+
+            if (rooted == false)
+            {
+                StartCoroutine(GunTimer());
+                rooted = true;
+                //agent.SetDestination(transform.position);
+            }
+           
+
+
+        }
+
+
+
     }
     public override void TakeDamage(float damageTaken)
     {
@@ -53,12 +91,75 @@ public class TestEnemy : BaseCharacter
 
     private IEnumerator FindShootPoint()
     {
-        yield return null;
+        isSearchingForPoint = true;
+
+        bool foundPoint = false;
+        // Find a point within massive sphere
+
+        while (foundPoint == false)
+        {
+            yield return null;
+
+            Vector3 randomPoint = centerPoint.position + Random.insideUnitSphere * range; //random point in a sphere 
+
+            NavMeshHit hit;
+            var path = new NavMeshPath();
+
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas) && NavMesh.CalculatePath(transform.position, randomPoint, 1, path))
+            {
+                Vector3 lookPoint = hit.position + new Vector3(0, 0.5f, 0);
+
+                Vector3 playerDir = player.position - lookPoint;
+
+                Ray ray = new Ray(lookPoint, playerDir.normalized);
+                RaycastHit raycastHit;
+
+                if (Physics.Raycast(ray, out raycastHit, 9999, playerLayer))
+                {
+                    Debug.DrawRay(lookPoint, playerDir.normalized * raycastHit.distance, Color.red, 90);
+
+                    if (raycastHit.collider.CompareTag("MainCamera"))
+                    {
+                        
+                        Debug.Log("Clear Shot");
+                        agent.SetDestination(hit.position);
+                        foundPoint = true;
+                        isSearchingForPoint = false;
+                        rooted = false;
+                    }
+                    else
+                    {
+                        
+
+                        Debug.Log("Not a clear shot");
+                    }
+
+                    
+                }              
+                
+            }
+            else
+            {
+                Debug.Log("Point not on NavMesh");
+            }
+            
+        }
+
+
+
+
+        // Sample if its on the navmesh, if not try again
+
+        // Starting from 0.5f above the point, draw a raycast to the planet. If it is obstructed try again
     }
+
+
 
 
     private IEnumerator GunTimer()
     {
+        transform.LookAt(player);
+
         while (true)
         {
             FireGun();

@@ -128,8 +128,12 @@ MonoBehaviour:
   swordLayer:
     serializedVersion: 2
     m_Bits: 0
+  projectileLayer:
+    serializedVersion: 2
+    m_Bits: 64
   parryableMat: {fileID: 2100000, guid: 9cc48548f87c7cc458a6d4eb99b6fdd0, type: 2}
   nonParryableMat: {fileID: 2100000, guid: e82288170ca271d4c9c1e9594eb08ce2, type: 2}
+  destroyProjectileDistance: 1
 --- !u!54 &4734423021266320897
 Rigidbody:
   m_ObjectHideFlags: 0

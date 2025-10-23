@@ -16,9 +16,12 @@ public class Bullet : BaseProjectile
 
     [SerializeField] private float bulletRadius;
     [SerializeField] private LayerMask swordLayer;
+    [SerializeField] private LayerMask projectileLayer;
 
     [SerializeField] private Material parryableMat;
     [SerializeField] private Material nonParryableMat;
+
+    [SerializeField] private float destroyProjectileDistance;
 
 
     void Start()
@@ -28,13 +31,25 @@ public class Bullet : BaseProjectile
 
     private void FixedUpdate()
     {
-        Vector3 direction = transform.position - previousPosition;
-        float distance = direction.magnitude;
+        Vector3 direction = (transform.position - previousPosition).normalized;
+        
 
         //if (Physics.SphereCast(previousPosition, bulletRadius, direction.normalized, out RaycastHit hit, distance, swordLayer))
         //{
         //    Parry(2);
         //}
+
+
+        if (_isParried)
+        {
+            if (Physics.Raycast(transform.position, direction, out RaycastHit hit, destroyProjectileDistance, projectileLayer))
+            {
+                if (hit.collider.GetComponent<BaseProjectile>() != null)
+                {
+                    Destroy(hit.collider.gameObject);
+                }
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

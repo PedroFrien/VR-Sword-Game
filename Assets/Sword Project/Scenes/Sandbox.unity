@@ -7887,6 +7887,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocityMult: 2
+  gameManager: {fileID: 1567044830}
+  bulletTimeSlow: 0.1
+  bulletTimeDuration: 1
 --- !u!1 &1064400603
 GameObject:
   m_ObjectHideFlags: 0
@@ -10985,6 +10988,7 @@ GameObject:
   - component: {fileID: 1395180303}
   - component: {fileID: 1395180302}
   - component: {fileID: 1395180301}
+  - component: {fileID: 1395180304}
   m_Layer: 0
   m_Name: Cylinder (9)
   m_TagString: Untagged
@@ -11080,6 +11084,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395180299}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1395180304
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395180299}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1406911645
 GameObject:
   m_ObjectHideFlags: 0
@@ -14078,8 +14098,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4375189281290987325, guid: e8b688908cc0ce24c930e6bad93e249c,
         type: 3}
+      propertyPath: shootInterval
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375189281290987325, guid: e8b688908cc0ce24c930e6bad93e249c,
+        type: 3}
       propertyPath: parryableChance
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7106180377681637929, guid: e8b688908cc0ce24c930e6bad93e249c,
         type: 3}
@@ -18234,7 +18259,6 @@ SceneRoots:
   - {fileID: 1567044829}
   - {fileID: 403953462}
   - {fileID: 1123146416}
-  - {fileID: 1276530180}
   - {fileID: 829203493}
   - {fileID: 2139532450}
   - {fileID: 3362793108268795993}
@@ -18252,3 +18276,4 @@ SceneRoots:
   - {fileID: 322061809}
   - {fileID: 557295243}
   - {fileID: 1668876631}
+  - {fileID: 1276530180}

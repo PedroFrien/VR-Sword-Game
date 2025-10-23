@@ -6,14 +6,26 @@ public class SwordBlade : MonoBehaviour
 {
     [SerializeField] private float velocityMult = 1.1f;
 
+    [SerializeField] private GameManager gameManager;
+
+    [SerializeField] private float bulletTimeSlow;
+    [SerializeField] private float bulletTimeDuration;
 
     // Start is called before the first frame update
+
+    private void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         BaseProjectile projectile = other.gameObject.GetComponent<BaseProjectile>();
         if (projectile != null && projectile.IsParryable == true && projectile.IsParried == false)
         {
             projectile.Parry(velocityMult);
+
+            gameManager.ActivateBulletTime(bulletTimeSlow, bulletTimeDuration);
+
         }
     }
 

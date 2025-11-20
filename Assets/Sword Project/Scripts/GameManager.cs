@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
 
     private bool isBulletTimeActive = false;
     private float bulletTimeEndTime = 0f;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +75,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel(string levelName)
     {
+        ChangeTimeScale(originalTimeScale);
         SceneManager.LoadScene(levelName);
 
     }

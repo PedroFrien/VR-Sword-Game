@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -17,6 +18,9 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float baseSpawnDelay;
     [SerializeField] private float delayDecrease;
     [SerializeField] private int spawnPerWave;
+
+    [SerializeField] private TMP_Text pointsCounter;
+    private float playerPoints;
 
     [SerializeField] private GameObject enemyPrefab;
 
@@ -60,6 +64,8 @@ public class WaveManager : MonoBehaviour
         waveActive = true;
 
         spawnDelay = baseSpawnDelay;
+        playerPoints = 0;
+        UpdatePoints(0);
 
         waveActive = true;
 
@@ -77,6 +83,12 @@ public class WaveManager : MonoBehaviour
         {
             Destroy(enemy);
         }
+    }
+
+    public void UpdatePoints(float amount)
+    {
+        playerPoints = amount;
+        pointsCounter.text = playerPoints.ToString();
     }
 
 

@@ -12,6 +12,8 @@ public class TestEnemy : BaseCharacter
     [SerializeField] private float bulletDamage;
     [SerializeField] private float bulletSpeed;
 
+    [SerializeField] private float pointsOnDeath = 5f;
+
     [SerializeField] private Transform firePoint;
 
     [SerializeField] private BaseProjectile bullet;
@@ -81,6 +83,9 @@ public class TestEnemy : BaseCharacter
 
     public override void Die()
     {
+        FindObjectOfType<WaveManager>().UpdatePoints(pointsOnDeath);
+
+
         Destroy(gameObject);
     }
 

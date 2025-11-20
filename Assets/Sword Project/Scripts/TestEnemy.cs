@@ -187,6 +187,8 @@ public class TestEnemy : BaseCharacter
     {
         transform.LookAt(player);
 
+        FindObjectOfType<AudioManager>().PlaySound("GunShoot", transform.position, gameObject);
+
         BaseProjectile firedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
 
         Vector3 shotDirection = (player.position - firePoint.position).normalized;

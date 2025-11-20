@@ -16,12 +16,16 @@ public class GameManager : MonoBehaviour
 
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         originalTimeScale = Time.timeScale;
         fixedTime = Time.fixedDeltaTime;
         maxFixedTime = Time.fixedDeltaTime;
+
+        FindObjectOfType<AudioManager>().PlayBackgroundMusic("Ambiance");
     }
 
     // Update is called once per frame

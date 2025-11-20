@@ -25,6 +25,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +63,12 @@ public class WaveManager : MonoBehaviour
     public void StartWave()
     {
         Debug.Log("Wave Started");
+
+        FindObjectOfType<AudioManager>().StopBackgroundMusic();
+        FindObjectOfType<AudioManager>().PlayBackgroundMusic("MainTheme");
+
+        FindObjectOfType<Player>().ResetHealth();
+
         waveActive = true;
 
         spawnDelay = baseSpawnDelay;
@@ -77,7 +85,7 @@ public class WaveManager : MonoBehaviour
 
         waveActive = false;
 
- 
+        FindObjectOfType<AudioManager>().PlayBackgroundMusic("Ambiance");
 
         foreach (GameObject enemy in spawnedEnemies)
         {
@@ -87,7 +95,7 @@ public class WaveManager : MonoBehaviour
 
     public void UpdatePoints(float amount)
     {
-        playerPoints = amount;
+        playerPoints += amount;
         pointsCounter.text = playerPoints.ToString();
     }
 

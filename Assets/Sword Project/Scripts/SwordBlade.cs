@@ -24,6 +24,10 @@ public class SwordBlade : MonoBehaviour
         {
             projectile.Parry(velocityMult);
 
+            FindObjectOfType<AudioManager>().PlaySound("Parry", transform.position, gameObject);
+
+            FindObjectOfType<Player>().Heal(1);
+
             gameManager.ActivateBulletTime(bulletTimeSlow, bulletTimeDuration);
 
         }

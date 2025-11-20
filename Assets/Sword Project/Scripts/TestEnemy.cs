@@ -33,11 +33,18 @@ public class TestEnemy : BaseCharacter
 
     [SerializeField] private string[] grunts;
 
+    [SerializeField] private Animator animator;
+
+    private bool ragdolled = false;
+
 
 
     private void Start()
     {
         rooted = true;
+
+        SetRigidbodyState(true);
+        SetColliderState(false);
 
         player = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
@@ -45,6 +52,7 @@ public class TestEnemy : BaseCharacter
 
         if (isSearchingForPoint == false)
         {
+            animator.SetBool("isWalking", true);
             StartCoroutine(FindShootPoint());
         }
         
@@ -87,12 +95,14 @@ public class TestEnemy : BaseCharacter
     {
         FindObjectOfType<WaveManager>().UpdatePoints(pointsOnDeath);
 
-        int randomIndex = Random.Range(0, grunts.Length);
-        string grunt = grunts[randomIndex];
-        FindObjectOfType<AudioManager>().PlaySound(grunt, transform.position, gameObject);
+        //int randomIndex = Random.Range(0, grunts.Length);
+        //string grunt = grunts[randomIndex];
+        //FindObjectOfType<AudioManager>().PlaySound(grunt, transform.position, gameObject);
 
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
+
+        Hit();
     }
 
     public override float Health
@@ -193,6 +203,8 @@ public class TestEnemy : BaseCharacter
     {
         transform.LookAt(player);
 
+        animator.SetTrigger("Shoot");
+
         FindObjectOfType<AudioManager>().PlaySound("GunShoot", transform.position, gameObject);
 
         BaseProjectile firedBullet = Instantiate(bullet, firePoint.position, firePoint.rotation);
@@ -205,5 +217,37 @@ public class TestEnemy : BaseCharacter
 
 
 
+    }
+
+    public void Hit()
+    {
+        ragdolled = true;
+        SetRigidbodyState(false);
+        SetColliderState(true);
+    }
+
+    void SetRigidbodyState(bool state)
+    {
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+
+        foreach (Rigidbody rigidbody in rigidbodies)
+        {
+            rigidbody.isKinematic = state;
+        }
+
+        GetComponent<Rigidbody>().isKinematic = !state;
+
+    }
+
+    void SetColliderState(bool state)
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = state;
+        }
+
+        GetComponent<Collider>().enabled = !state;
     }
 }

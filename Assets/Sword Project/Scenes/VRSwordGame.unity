@@ -16888,6 +16888,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 65336598038342206, guid: def7520d3b9fa9540a2007429cb2ffc7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -47543,6 +47548,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 151.10301
       objectReference: {fileID: 0}
+    - target: {fileID: 65768176949845742, guid: 30a6837b1c8a96c4c930f25d81cf00b3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -77561,6 +77571,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 65206840759463888, guid: 8653524493a3b7c4da8ad10ac8262e89,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -99260,6 +99275,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90.00001
       objectReference: {fileID: 0}
+    - target: {fileID: 65374029288325158, guid: 11753e07d903380478bfb4cac65bf037,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -120862,8 +120882,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318e1d4bfd9380944a235b6a88a2040c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
-  maxHealth: 0
+  _health: 20
+  maxHealth: 20
   healthCounter: {fileID: 1102171818}
   hurtSounds:
   - HurtSound1

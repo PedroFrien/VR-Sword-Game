@@ -23,10 +23,17 @@ public class Bullet : BaseProjectile
 
     [SerializeField] private float destroyProjectileDistance;
 
+    [SerializeField] private GameObject bulletDestroyer;
+
+    [SerializeField] private GameObject psGreen;
+    [SerializeField] private GameObject psRed;
+
 
     void Start()
     {
         previousPosition = transform.position;
+
+        bulletDestroyer.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -66,18 +73,21 @@ public class Bullet : BaseProjectile
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (IsParryable && other.GetComponent<BaseProjectile>() != null)
-        {
-            Destroy(other.gameObject);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (IsParryable && other.GetComponent<BaseProjectile>() != null)
+    //    {
+    //        Destroy(other.gameObject);
+    //    }
+    //}
 
     public override void Parry(float VelocityMult)
     {
         rb.velocity = rb.velocity * VelocityMult * -1;
         _isParried = true;
+
+
+        bulletDestroyer.SetActive(true);
     }
 
     public override void RandomParry(float parryChance)
@@ -88,11 +98,18 @@ public class Bullet : BaseProjectile
         {
             IsParryable = true;
             GetComponent<MeshRenderer>().material = parryableMat;
+
+            psGreen.SetActive(true);
+
+            
+
         }
         else
         {
             IsParryable = false;
             GetComponent<MeshRenderer>().material = nonParryableMat;
+
+            psRed.SetActive(true);
         }
 
 

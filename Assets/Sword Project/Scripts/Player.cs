@@ -36,9 +36,7 @@ public class Player : BaseCharacter
 
     public override void Die()
     {
-        Debug.Log("Player Died");
-
-        Destroy(gameObject);
+        FindObjectOfType<GameManager>().LoadLevel("DeathScene");
     }
 
     public override float Health

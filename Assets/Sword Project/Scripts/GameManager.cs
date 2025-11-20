@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -14,9 +15,24 @@ public class GameManager : MonoBehaviour
     private bool isBulletTimeActive = false;
     private float bulletTimeEndTime = 0f;
 
+    public static GameManager instance;
 
 
 
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -77,9 +93,16 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ResetTimeScale()
+    {
+        Time.timeScale = originalTimeScale;
+    }
+
     public void LoadLevel(string levelName)
     {
         ChangeTimeScale(originalTimeScale);
+        FindObjectOfType<AudioManager>().StopBackgroundMusic();
+
         SceneManager.LoadScene(levelName);
 
     }

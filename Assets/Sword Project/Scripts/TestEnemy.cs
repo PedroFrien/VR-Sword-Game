@@ -31,6 +31,8 @@ public class TestEnemy : BaseCharacter
 
     [SerializeField] private float parryableChance;
 
+    [SerializeField] private string[] grunts;
+
 
 
     private void Start()
@@ -84,6 +86,10 @@ public class TestEnemy : BaseCharacter
     public override void Die()
     {
         FindObjectOfType<WaveManager>().UpdatePoints(pointsOnDeath);
+
+        int randomIndex = Random.Range(0, grunts.Length);
+        string grunt = grunts[randomIndex];
+        FindObjectOfType<AudioManager>().PlaySound(grunt, transform.position, gameObject);
 
 
         Destroy(gameObject);

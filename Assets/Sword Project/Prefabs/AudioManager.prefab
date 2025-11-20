@@ -69,32 +69,50 @@ MonoBehaviour:
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 0350836e02e22f147888bf13890aca8d, type: 3}
     name: HurtSound1
-    volume: 1
+    volume: 2
     pitch: 1
     speed: 1
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 9ffa9beceb39d2840b75524b365955d4, type: 3}
     name: HurtSound2
-    volume: 1
+    volume: 2
     pitch: 1
     speed: 1
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: e8f134526b728b047b2ec734a93cfc16, type: 3}
     name: HurtSound3
-    volume: 1
+    volume: 2
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e29332893e20ef6448c96a1923681215, type: 3}
+    name: Grunt1
+    volume: 2
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: dc673dc478b3c4345906788d7fa95c0a, type: 3}
+    name: Grunt2
+    volume: 2
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: a93ac83174dbd9f4f86a86e53b3ad30b, type: 3}
+    name: Grunt3
+    volume: 2
     pitch: 1
     speed: 1
     source: {fileID: 0}
   music:
   - clip: {fileID: 8300000, guid: c0ebb84e26c4d86479aaf36d3a4a4e8e, type: 3}
     name: Ambiance
-    volume: 1
+    volume: 3
     pitch: 1
     speed: 1
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: f3e50ea88c815294eac3e5d601972c75, type: 3}
     name: MainTheme
-    volume: 3
+    volume: 4
     pitch: 1
     speed: 1
     source: {fileID: 0}

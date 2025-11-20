@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
@@ -67,5 +68,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = timeValue;
 
 
+    }
+
+    public void LoadLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
+
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

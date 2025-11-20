@@ -752,6 +752,7 @@ MonoBehaviour:
   fireInterval: 1
   bulletDamage: 1
   bulletSpeed: 10
+  pointsOnDeath: 5
   firePoint: {fileID: 2334235948059828282}
   bullet: {fileID: 386671277827444755, guid: 56fcceb88ba6d2a4ead14a6ea50caf8f, type: 3}
   playerLayer:
@@ -761,7 +762,7 @@ MonoBehaviour:
   range: 20
   agent: {fileID: 0}
   rooted: 1
-  parryableChance: 25
+  parryableChance: 35
 --- !u!195 &3371910582933505941
 NavMeshAgent:
   m_ObjectHideFlags: 0

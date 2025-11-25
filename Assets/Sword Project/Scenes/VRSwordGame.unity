@@ -39,6 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.481
   m_CustomReflection: {fileID: 8900000, guid: 672ab988fe01b684c9cd1c31786152f3, type: 3}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.019737802, g: 0.058890793, b: 0, a: 0.481}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18502,7 +18503,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 8848131633249631744, guid: eb91affb984e740dbb2082626ba96efb,
+  m_ModelPrefab: {fileID: 1465969631680647165, guid: 4206c0d1aa7702847ae33b97a77ace01,
     type: 3}
   m_ModelParent: {fileID: 0}
   m_Model: {fileID: 0}
@@ -120814,12 +120815,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!114 &1406299144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136824,7 +136825,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 7111071080452410799, guid: a2e8ee2005c074447b929af42b7f5068,
+  m_ModelPrefab: {fileID: 8528596951463319327, guid: 02c74c7fea20b474b87f27a4a19230ac,
     type: 3}
   m_ModelParent: {fileID: 0}
   m_Model: {fileID: 0}

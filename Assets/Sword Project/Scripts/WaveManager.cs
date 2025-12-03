@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class WaveManager : MonoBehaviour
@@ -24,20 +25,32 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField] private GameObject enemyPrefab;
 
-
+    private Keyboard keyboard;
 
 
     // Start is called before the first frame update
     void Start()
     {
         enemySpawns = FindObjectsOfType<EnemySpawn>();
+
+        keyboard = Keyboard.current;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (keyboard.rKey.wasPressedThisFrame)
+        {
+            StartWave();
+        }
+
+        if (keyboard.qKey.wasPressedThisFrame)
+        {
+            EndWave();
+        }
     }
+
+
 
     private IEnumerator WaveTimer()
     {
@@ -89,7 +102,7 @@ public class WaveManager : MonoBehaviour
 
         foreach (GameObject enemy in spawnedEnemies)
         {
-            Destroy(enemy);
+            enemy.GetComponent<BaseCharacter>().Die();
         }
     }
 

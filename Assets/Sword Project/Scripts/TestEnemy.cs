@@ -11,6 +11,7 @@ public class TestEnemy : BaseCharacter
     [SerializeField] private float fireInterval;
     [SerializeField] private float bulletDamage;
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private float initialDelay;
 
     [SerializeField] private float pointsOnDeath = 5f;
 
@@ -37,14 +38,16 @@ public class TestEnemy : BaseCharacter
 
     private bool ragdolled = false;
 
+    [SerializeField] private LineRenderer laserPointer;
+
 
 
     private void Start()
     {
         rooted = true;
 
-        SetRigidbodyState(true);
-        SetColliderState(false);
+        //SetRigidbodyState(true);
+        //SetColliderState(false);
 
         player = GameObject.FindGameObjectWithTag("MainCamera").transform;
 
@@ -55,7 +58,10 @@ public class TestEnemy : BaseCharacter
             animator.SetBool("isWalking", true);
             StartCoroutine(FindShootPoint());
         }
-        
+
+        laserPointer.useWorldSpace = true;
+        laserPointer.positionCount = 1;
+
     }
 
     private void Update()
@@ -70,6 +76,9 @@ public class TestEnemy : BaseCharacter
             {
                 StartCoroutine(GunTimer());
                 rooted = true;
+
+                
+
                 //agent.SetDestination(transform.position);
             }
            
@@ -100,9 +109,9 @@ public class TestEnemy : BaseCharacter
         //FindObjectOfType<AudioManager>().PlaySound(grunt, transform.position, gameObject);
 
 
-        //Destroy(gameObject);
+        Destroy(gameObject);
 
-        Hit();
+        //Hit();
     }
 
     public override float Health
@@ -181,7 +190,14 @@ public class TestEnemy : BaseCharacter
 
     private IEnumerator GunTimer()
     {
-        
+        laserPointer.positionCount = 2;
+
+        laserPointer.SetPosition(0, firePoint.position);
+        laserPointer.SetPosition(1, player.transform.position);
+
+        animator.SetTrigger("Shoot");
+
+        yield return new WaitForSeconds(initialDelay);
 
         while (true)
         {

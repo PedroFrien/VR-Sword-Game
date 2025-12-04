@@ -140,6 +140,8 @@ MonoBehaviour:
   bulletDestroyer: {fileID: 6389972669151665286}
   psGreen: {fileID: 5052444402830451672}
   psRed: {fileID: 8716950091551525412}
+  parryParticle: {fileID: 4709137247863218138, guid: 0820a8bacb466e14883b75a124cd1e75,
+    type: 3}
 --- !u!54 &4734423021266320897
 Rigidbody:
   m_ObjectHideFlags: 0

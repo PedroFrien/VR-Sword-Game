@@ -26,6 +26,11 @@ public class PlayerBullet : MonoBehaviour
         otherSpeed = rb.velocity.magnitude;
 
     }
+
+    private void Update()
+    {
+        rb.velocity = rb.velocity.normalized * speed;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         BaseCharacter character = collision.gameObject.GetComponent<BaseCharacter>();
@@ -45,9 +50,11 @@ public class PlayerBullet : MonoBehaviour
             Destroy(gameObject);
         }
 
+        FindObjectOfType<AudioManager>().PlaySound("Ricochet", transform.position, gameObject);
+
         Bounce();
 
-        rb.velocity = rb.velocity.normalized * otherSpeed;
+        
 
     }
 

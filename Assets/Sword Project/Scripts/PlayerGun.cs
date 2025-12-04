@@ -21,6 +21,8 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private float maxCharge = 3;
     [SerializeField] private float currentCharge;
 
+    [SerializeField] private GameObject gunParticle;
+
 
     private bool charging = false;
 
@@ -55,11 +57,15 @@ public class PlayerGun : MonoBehaviour
 
         if (currentCharge >= maxCharge)
         {
+            gunParticle.SetActive(true);
+
+
             float triggerValue = leftTriggerAction.action.ReadValue<float>();
 
             if (triggerValue > 0.5f) // Adjust threshold as needed
             {
                 charging = true;
+                FindObjectOfType<AudioManager>().PlayExclusiveSound("GunCharge", transform.position, gameObject);
             }
 
             if (triggerValue < 0.5f)
@@ -85,6 +91,10 @@ public class PlayerGun : MonoBehaviour
                 laserSight.enabled = false;
             }
         }
+        else
+        {
+            gunParticle.SetActive(false);
+        }
         
     }
 
@@ -100,12 +110,14 @@ public class PlayerGun : MonoBehaviour
     {
         ResetCharge();
 
+        FindObjectOfType<AudioManager>().PlaySound("PlayerShot", transform.position, gameObject);
+
         GameObject firedBullet = Instantiate(playerBullet, firePoint.position, firePoint.rotation);
 
         Vector3 aimDirection = laserSight.transform.forward;
 
-        firedBullet.GetComponent<Rigidbody>().velocity = aimDirection * bulletSpeed * Time.deltaTime;
-        firedBullet.GetComponent<PlayerBullet>().speed = bulletSpeed * Time.deltaTime;
+        firedBullet.GetComponent<Rigidbody>().velocity = aimDirection * bulletSpeed;
+        firedBullet.GetComponent<PlayerBullet>().speed = bulletSpeed;
 
     }
 

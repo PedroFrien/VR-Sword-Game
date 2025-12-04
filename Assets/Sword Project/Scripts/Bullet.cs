@@ -28,6 +28,7 @@ public class Bullet : BaseProjectile
     [SerializeField] private GameObject psGreen;
     [SerializeField] private GameObject psRed;
 
+    [SerializeField] private GameObject parryParticle;
 
     void Start()
     {
@@ -86,6 +87,7 @@ public class Bullet : BaseProjectile
         rb.velocity = rb.velocity * VelocityMult * -1;
         _isParried = true;
 
+        Instantiate(parryParticle, transform.position, Quaternion.identity);
 
         bulletDestroyer.SetActive(true);
     }

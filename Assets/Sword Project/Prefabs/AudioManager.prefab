@@ -103,10 +103,52 @@ MonoBehaviour:
     pitch: 1
     speed: 1
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 35c12b054d2d748bfa287b7608c0b7de, type: 3}
+    name: GunCharge
+    volume: 2
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 95cd19562e60e47dba4f06270c44fc0c, type: 3}
+    name: PlayerShot
+    volume: 2
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 4c5ac51360f17437da9e3d25b0477b25, type: 3}
+    name: Ricochet
+    volume: 2
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: b0996cd92a8e04cc683251f914a57541, type: 3}
+    name: SectionUnlock
+    volume: 2
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 8bb1c63e2bf564f9487bfe7016ad0974, type: 3}
+    name: SloMo
+    volume: 2
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c9a24cd5c6109491e9fc8e3a7c399cc5, type: 3}
+    name: TargetLock
+    volume: 2
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
   music:
   - clip: {fileID: 8300000, guid: c0ebb84e26c4d86479aaf36d3a4a4e8e, type: 3}
     name: Ambiance
     volume: 3
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f3e50ea88c815294eac3e5d601972c75, type: 3}
+    name: MainTheme
+    volume: 4
     pitch: 1
     speed: 1
     source: {fileID: 0}

@@ -212,6 +212,8 @@ public class TestEnemy : BaseCharacter
         transform.LookAt(player);
 
         laserPointer.positionCount = 2;
+
+        FindObjectOfType<AudioManager>().PlaySound("TargetLock", transform.position, gameObject);
         
         
 

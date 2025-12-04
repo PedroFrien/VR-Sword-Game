@@ -8,7 +8,18 @@ using UnityEngine.UIElements;
 
 public class WaveManager : MonoBehaviour
 {
-    [SerializeField] private EnemySpawn[] enemySpawns;
+    [SerializeField] private List<EnemySpawn> enemySpawns;
+
+    [SerializeField] private List<EnemySpawn> section1;
+    [SerializeField] private List<EnemySpawn> section2;
+    [SerializeField] private List<EnemySpawn> section3;
+
+    [SerializeField] private WaveWall waveWall1;
+    [SerializeField] private WaveWall waveWall2;
+    [SerializeField] private WaveWall waveWall3;
+
+    [SerializeField] private float Area2Delay;
+    [SerializeField] private float Area3Delay;
 
     [SerializeField] private BaseCharacter[] enemies;
     public List<GameObject> spawnedEnemies = new List<GameObject>();
@@ -19,6 +30,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float baseSpawnDelay;
     [SerializeField] private float delayDecrease;
     [SerializeField] private int spawnPerWave;
+    [SerializeField] private int basePerWave;
 
     [SerializeField] private TMP_Text pointsCounter;
     private float playerPoints;
@@ -31,7 +43,6 @@ public class WaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemySpawns = FindObjectsOfType<EnemySpawn>();
 
         keyboard = Keyboard.current;
     }
@@ -54,6 +65,7 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator WaveTimer()
     {
+        yield return new WaitForSeconds(3);
         while (waveActive == true)
         {
             for (int i = 0; i < spawnPerWave; i++)
@@ -67,6 +79,8 @@ public class WaveManager : MonoBehaviour
             spawnDelay -= delayDecrease;
 
             spawnDelay = Mathf.Max(1, spawnDelay);
+
+            spawnPerWave++;
 
             yield return new WaitForSeconds(spawnDelay);
         }      
@@ -85,12 +99,34 @@ public class WaveManager : MonoBehaviour
         waveActive = true;
 
         spawnDelay = baseSpawnDelay;
+        spawnPerWave = basePerWave;
         playerPoints = 0;
         UpdatePoints(0);
 
         waveActive = true;
 
         StartCoroutine(WaveTimer());
+
+        StartCoroutine("SectionTimer");
+    }
+
+    private IEnumerator SectionTimer()
+    {
+        waveWall1.SetWall(true);
+
+        OpenSection(section1);
+
+        yield return new WaitForSeconds(Area2Delay);
+
+        waveWall2.SetWall(true);
+
+        OpenSection(section2);
+
+        yield return new WaitForSeconds(Area3Delay);
+
+        waveWall3.SetWall(true);
+
+        OpenSection(section3);
     }
     public void EndWave()
     {
@@ -104,10 +140,19 @@ public class WaveManager : MonoBehaviour
 
         foreach (GameObject enemy in spawnedEnemies)
         {
-            enemy.GetComponent<BaseCharacter>().Die();
+            Destroy(enemy);
         }
 
         spawnedEnemies.Clear();
+
+        StopCoroutine("SectionTimer");
+
+        waveWall1.SetWall(false);
+        waveWall2.SetWall(false);
+        waveWall3.SetWall(false);
+
+        enemySpawns.Clear();
+
     }
 
     public void UpdatePoints(float amount)
@@ -121,7 +166,7 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnRandomEnemy()
     {
-        int randomIndex = Random.Range(0, enemySpawns.Length);
+        int randomIndex = Random.Range(0, enemySpawns.Count);
 
         EnemySpawn selectedSpawn = enemySpawns[randomIndex];
 
@@ -133,5 +178,13 @@ public class WaveManager : MonoBehaviour
 
         GameObject spawned = Instantiate(enemyPrefab, selectedSpawn.gameObject.transform.position, selectedSpawn.gameObject.transform.rotation);
         spawnedEnemies.Add(spawned);
+    }
+
+    public void OpenSection(List<EnemySpawn> spawns)
+    {
+        foreach (EnemySpawn spawn in spawns)
+        {
+            enemySpawns.Add(spawn);
+        }
     }
 }

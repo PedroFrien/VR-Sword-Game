@@ -14,6 +14,13 @@ public class PlayerGun : MonoBehaviour
 
     public InputActionReference leftTriggerAction;
 
+    [SerializeField] private HealthbarImage energyBar;
+
+    [SerializeField] private GameObject playerBullet;
+
+    [SerializeField] private float maxCharge = 3;
+    [SerializeField] private float currentCharge;
+
 
     private bool charging = false;
 
@@ -21,33 +28,64 @@ public class PlayerGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateEnergyBar();
+    }
+
+    public void AddEnergy(int amount)
+    {
+        currentCharge += amount;
+
+        UpdateEnergyBar();
+
+        Debug.Log(currentCharge);
+    }
+
+    private void UpdateEnergyBar()
+    {
+        float value = currentCharge / maxCharge;
+
+        Debug.Log(value);
+
+        energyBar.ChangeValue(value);
     }
 
     // Update is called once per frame
     void Update()
     {
-        float triggerValue = leftTriggerAction.action.ReadValue<float>();
 
-        if (triggerValue > 0.5f) // Adjust threshold as needed
+        if (currentCharge >= maxCharge)
         {
-            charging = true;
-        }
+            float triggerValue = leftTriggerAction.action.ReadValue<float>();
 
-        if (triggerValue < 0.5f)
-        {
-            charging = false;
-        }
+            if (triggerValue > 0.5f) // Adjust threshold as needed
+            {
+                charging = true;
+            }
+
+            if (triggerValue < 0.5f)
+            {
+                if (charging)
+                {
+                    Fire();
+                }
 
 
-        if (charging)
-        {
-            laserSight.enabled = true;
+                charging = false;
+
+
+            }
+
+
+            if (charging)
+            {
+                laserSight.enabled = true;
+            }
+            else
+            {
+                laserSight.enabled = false;
+            }
         }
-        else
-        {
-            laserSight.enabled = false;
-        }
+        
     }
 
     void OnEnable()
@@ -56,5 +94,24 @@ public class PlayerGun : MonoBehaviour
         {
             leftTriggerAction.action.Enable();
         }
+    }
+
+    private void Fire()
+    {
+        ResetCharge();
+
+        GameObject firedBullet = Instantiate(playerBullet, firePoint.position, firePoint.rotation);
+
+        Vector3 aimDirection = laserSight.transform.forward;
+
+        firedBullet.GetComponent<Rigidbody>().velocity = aimDirection * bulletSpeed * Time.deltaTime;
+        firedBullet.GetComponent<PlayerBullet>().speed = bulletSpeed * Time.deltaTime;
+
+    }
+
+    private void ResetCharge()
+    {
+        currentCharge = 0;
+        UpdateEnergyBar();
     }
 }

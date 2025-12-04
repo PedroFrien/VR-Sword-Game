@@ -12,7 +12,7 @@ public class HealthbarImage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lerpSpeed = lerpSpeed * Time.deltaTime;
+
     }
 
     // Update is called once per frame

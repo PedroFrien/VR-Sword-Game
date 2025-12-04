@@ -190,12 +190,20 @@ public class TestEnemy : BaseCharacter
 
     private IEnumerator GunTimer()
     {
-        laserPointer.positionCount = 2;
+        
 
+        
+
+        animator.SetBool("isWalking", false);
+
+
+        yield return new WaitForSeconds(1);
+
+        transform.LookAt(player);
+
+        laserPointer.positionCount = 2;
         laserPointer.SetPosition(0, firePoint.position);
         laserPointer.SetPosition(1, player.transform.position);
-
-        animator.SetTrigger("Shoot");
 
         yield return new WaitForSeconds(initialDelay);
 

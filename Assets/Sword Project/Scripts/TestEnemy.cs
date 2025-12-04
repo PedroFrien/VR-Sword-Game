@@ -40,6 +40,8 @@ public class TestEnemy : BaseCharacter
 
     [SerializeField] private LineRenderer laserPointer;
 
+    private Transform laserTarget;
+
 
 
     private void Start()
@@ -61,6 +63,8 @@ public class TestEnemy : BaseCharacter
 
         laserPointer.useWorldSpace = true;
         laserPointer.positionCount = 1;
+
+        laserTarget = GameObject.FindGameObjectWithTag("LaserTarget").transform;
 
     }
 
@@ -84,6 +88,12 @@ public class TestEnemy : BaseCharacter
            
 
 
+        }
+
+        if (laserPointer.positionCount > 1)
+        {
+            laserPointer.SetPosition(0, firePoint.position);
+            laserPointer.SetPosition(1, laserTarget.position);
         }
 
 
@@ -202,8 +212,8 @@ public class TestEnemy : BaseCharacter
         transform.LookAt(player);
 
         laserPointer.positionCount = 2;
-        laserPointer.SetPosition(0, firePoint.position);
-        laserPointer.SetPosition(1, player.transform.position);
+        
+        
 
         yield return new WaitForSeconds(initialDelay);
 

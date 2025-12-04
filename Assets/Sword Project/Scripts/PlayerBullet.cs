@@ -9,6 +9,7 @@ public class PlayerBullet : MonoBehaviour
     [SerializeField] private int currentBounces = 0;
 
     public float speed;
+    private float otherSpeed;
 
     [SerializeField] private Rigidbody rb;
 
@@ -18,47 +19,46 @@ public class PlayerBullet : MonoBehaviour
     private GameObject closestEnemy;
     private float closestDistance;
     private Vector3 dirToEnemy;
+    private Vector3 closestEnemyDir;
     private void Start()
     {
         waveManager = GameObject.FindGameObjectWithTag("WaveManager").GetComponent<WaveManager>();
+        otherSpeed = rb.velocity.magnitude;
+
     }
     private void OnCollisionEnter(Collision collision)
     {
         BaseCharacter character = collision.gameObject.GetComponent<BaseCharacter>();
 
-        currentBounces++;
-
-        if (currentBounces >= maxBounces)
-        {
-            Destroy(gameObject);
-        }
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        BaseCharacter character = other.gameObject.GetComponent<BaseCharacter>();
+        
 
         currentBounces++;
         if (character != null)
         {
             character.TakeDamage(5);
 
-            Bounce();
+            
         }
 
         if (currentBounces >= maxBounces)
         {
             Destroy(gameObject);
         }
+
+        Bounce();
+
+        rb.velocity = rb.velocity.normalized * otherSpeed;
+
     }
 
     private void Bounce()
     {
+        
+
         enemies = waveManager.spawnedEnemies;
 
         closestEnemy = null;
-        closestDistance = 0;
+        closestDistance = 9999;
         dirToEnemy = Vector3.zero;
 
         foreach (GameObject enemy in enemies)
@@ -74,6 +74,7 @@ public class PlayerBullet : MonoBehaviour
 
                     closestDistance = distance;
                     closestEnemy = enemy;
+                    closestEnemyDir = dirToEnemy;
                 }
             }
         }
@@ -81,9 +82,12 @@ public class PlayerBullet : MonoBehaviour
 
         if (closestEnemy != null)
         {
-            dirToEnemy = (closestEnemy.transform.position - transform.position).normalized;
+            Debug.Log("Bouncing");
+            Debug.Log(closestEnemy);
+            
+            Debug.DrawRay(transform.position, closestEnemyDir * 99, Color.blue, 90);
             rb.velocity = Vector3.zero;
-            rb.velocity = dirToEnemy * speed;
+            rb.velocity = closestEnemyDir * speed;
         }
 
         

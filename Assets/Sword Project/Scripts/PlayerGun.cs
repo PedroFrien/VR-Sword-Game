@@ -105,7 +105,7 @@ public class PlayerGun : MonoBehaviour
         Vector3 aimDirection = laserSight.transform.forward;
 
         firedBullet.GetComponent<Rigidbody>().velocity = aimDirection * bulletSpeed * Time.deltaTime;
-        firedBullet.GetComponent<PlayerBullet>().speed = bulletSpeed;
+        firedBullet.GetComponent<PlayerBullet>().speed = bulletSpeed * Time.deltaTime;
 
     }
 

@@ -33,21 +33,21 @@ public class WaveManager : MonoBehaviour
     {
         enemySpawns = FindObjectsOfType<EnemySpawn>();
 
-        keyboard = Keyboard.current;
+        //keyboard = Keyboard.current;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (keyboard.rKey.wasPressedThisFrame)
-        {
-            StartWave();
-        }
+        //if (keyboard.rKey.wasPressedThisFrame)
+        //{
+        //    StartWave();
+        //}
 
-        if (keyboard.qKey.wasPressedThisFrame)
-        {
-            EndWave();
-        }
+        //if (keyboard.qKey.wasPressedThisFrame)
+        //{
+        //    EndWave();
+        //}
     }
 
 

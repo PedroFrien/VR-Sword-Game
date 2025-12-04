@@ -13,6 +13,8 @@ public class Player : BaseCharacter
     [SerializeField] private TMP_Text healthCounter;
 
     [SerializeField] private string[] hurtSounds;
+
+    [SerializeField] private HealthbarImage healthBar;
     public override void TakeDamage(float damageTaken)
 
     {
@@ -26,7 +28,7 @@ public class Player : BaseCharacter
         string hurtSound = hurtSounds[randomIndex];
         FindObjectOfType<AudioManager>().PlaySound(hurtSound, transform.position, gameObject);
 
-
+        UpdateHealth();
 
         if (_health <= 0)
         {
@@ -53,6 +55,8 @@ public class Player : BaseCharacter
 
         healthCounter.text = _health.ToString();
 
+        UpdateHealth();
+
     }
 
     private void Start()
@@ -69,5 +73,15 @@ public class Player : BaseCharacter
     {
         _health = maxHealth;
         healthCounter.text = _health.ToString();
+
+        UpdateHealth();
+    }
+
+    private void UpdateHealth()
+    {
+        float healthValue = _health / maxHealth;
+
+
+        healthBar.ChangeValue(healthValue);
     }
 }

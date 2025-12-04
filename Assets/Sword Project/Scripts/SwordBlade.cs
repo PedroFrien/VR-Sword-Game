@@ -27,6 +27,7 @@ public class SwordBlade : MonoBehaviour
             FindObjectOfType<AudioManager>().PlaySound("Parry", transform.position, gameObject);
 
             FindObjectOfType<Player>().Heal(1);
+            FindObjectOfType<PlayerGun>().AddEnergy(1);
 
             gameManager.ActivateBulletTime(bulletTimeSlow, bulletTimeDuration);
 

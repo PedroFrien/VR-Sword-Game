@@ -11,7 +11,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private EnemySpawn[] enemySpawns;
 
     [SerializeField] private BaseCharacter[] enemies;
-    private List<GameObject> spawnedEnemies = new List<GameObject>();
+    public List<GameObject> spawnedEnemies = new List<GameObject>();
 
     [SerializeField] private bool waveActive;
 
@@ -33,21 +33,21 @@ public class WaveManager : MonoBehaviour
     {
         enemySpawns = FindObjectsOfType<EnemySpawn>();
 
-        //keyboard = Keyboard.current;
+        keyboard = Keyboard.current;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (keyboard.rKey.wasPressedThisFrame)
-        //{
-        //    StartWave();
-        //}
+        if (keyboard.rKey.wasPressedThisFrame)
+        {
+            StartWave();
+        }
 
-        //if (keyboard.qKey.wasPressedThisFrame)
-        //{
-        //    EndWave();
-        //}
+        if (keyboard.qKey.wasPressedThisFrame)
+        {
+            EndWave();
+        }
     }
 
 
@@ -94,16 +94,20 @@ public class WaveManager : MonoBehaviour
     }
     public void EndWave()
     {
-   
+        Debug.Log("Ending Wave");
 
         waveActive = false;
 
+
+        FindObjectOfType<AudioManager>().StopBackgroundMusic();
         FindObjectOfType<AudioManager>().PlayBackgroundMusic("Ambiance");
 
         foreach (GameObject enemy in spawnedEnemies)
         {
             enemy.GetComponent<BaseCharacter>().Die();
         }
+
+        spawnedEnemies.Clear();
     }
 
     public void UpdatePoints(float amount)
@@ -121,9 +125,9 @@ public class WaveManager : MonoBehaviour
 
         EnemySpawn selectedSpawn = enemySpawns[randomIndex];
 
-        randomIndex = Random.Range(0, enemies.Length);
+        //randomIndex = Random.Range(0, enemies.Length);
 
-        BaseCharacter selectedEnemy = enemies[randomIndex];
+        //BaseCharacter selectedEnemy = enemies[randomIndex];
 
 
 
